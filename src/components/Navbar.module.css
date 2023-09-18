@@ -1,0 +1,13 @@
+@import url("../index.css"); 
+
+.navbar {
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  height: 69px;
+  background-color: var(--primary-blue);
+}
+
+.logo {
+  max-width: 100px;
+}
