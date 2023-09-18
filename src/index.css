@@ -1,0 +1,29 @@
+/* Styles globais */
+:root {
+  --gray-lightest: #E4E6F0;
+  --gray-darkest: #5C5958;
+  --gray-medium: #7B7B7B;
+  --gray-light: #C0C1C6;
+  --primary-blue: #003A64;
+  --primary-orange: #FF4F2A;
+  --white: #F5F5F5;
+  --green: #4CAF50;
+  --black: #312F2F;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Calibri', sans-serif;
+  color: var(--black);
+}
+
+body {
+  background-color: var(--gray-lightest);
+  padding: 2rem;
+}
+
+a {
+  text-decoration: none;
+}
