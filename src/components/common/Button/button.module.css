@@ -1,25 +1,22 @@
 .buttonFont{
   font-weight: 700;
   font-size: 16px;
-  align-items: center;
-  justify-content: center;
+  background-color: var(--primary-orange);
+  color: var(--white);
+}
 
-  &[data-color='green']{
-    background-color: var(--green);
-    color: var(--gray-lightest)
-  }
+.green{
+  background-color: var(--green);
+  color: var(--gray-lightest)
+}
 
-  &[data-color='orange']{
-    background-color: var(--primary-orange);
-    color: var(--white);
-  }
-  
-  &[data-color='gray']{
-    background-color: var(--gray-light);
-    color: var(--gray-darkest);
-  }
+.gray{
+  background-color: var(--gray-light);
+  color: var(--gray-darkest);
+}
 
-  img{
-    margin-right: 10px;
-  }
-} 
+.icon{
+  font-size: small;
+  color: white;
+}
+
