@@ -26,3 +26,21 @@ body {
 a {
   text-decoration: none;
 }
+
+.pageContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 946px;
+  margin: 0 auto;
+  padding: 0 20px; /* Adicione um espaçamento interno opcional */
+  width: 100%;
+}
+
+/* Use media queries para ajustar o max-width com base no tamanho da tela */
+@media (max-width: 768px) {
+  .pageContent {
+    max-width: 90%; /* Reduza o max-width para 90% da largura da tela */
+  }
+}

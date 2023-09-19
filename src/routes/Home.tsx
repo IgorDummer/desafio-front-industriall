@@ -1,10 +1,13 @@
 import React from 'react'
+import Header from '../components/Header';
 
 const Home = () => {
   return (
-    <div>
-      <h1>Home</h1>
-    </div>
+    <Header
+      title='Atas de Reunião'
+      subtitle='Estas são as atas das últimas reuniões'
+      hasButton
+    />
   )
 }
 

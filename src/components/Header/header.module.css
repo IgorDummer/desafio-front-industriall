@@ -1,0 +1,37 @@
+.container {
+  width: 100%;
+  margin-right: 0;
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Centraliza verticalmente */
+  margin-top: 32px;
+  margin-bottom: 32px;
+  max-width: 800px;
+  width: 100%;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--primary-blue);
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  font-weight: 400;
+  font-size: 20px;
+  color: var(--gray-darkest);
+}
+
+.buttonAddMinute{
+  padding: 5px 13px;
+  gap: 10px;
+  border-radius: 5px;
+  color: var(--white);
+  background-color: var(--primary-orange);
+  border: none;
+  ;
+}

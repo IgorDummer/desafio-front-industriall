@@ -1,11 +1,12 @@
-@import url("../index.css"); 
-
 .navbar {
   display: flex;
   justify-content: center; /* Centraliza horizontalmente */
   align-items: center; /* Centraliza verticalmente */
   height: 69px;
   background-color: var(--primary-blue);
+
+  /* Mantém  a Navbar fixa na tela */
+  position: sticky;
 }
 
 .logo {
