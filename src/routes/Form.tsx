@@ -1,4 +1,5 @@
 import Header from '../components/Header';
+import NewMinutesForm from '../components/NewMinutesForm';
 import '../index.css'
 
 const Form = () => {
@@ -8,6 +9,7 @@ const Form = () => {
         title='Nova Ata de Reunião'
         subtitle='Os campos obrigatórios estão marcados com um asterisco (*)'
       />
+      <NewMinutesForm />
     </div>
   )
 }

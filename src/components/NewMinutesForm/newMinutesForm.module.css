@@ -1,0 +1,20 @@
+.container{
+  background-color: var(--white);
+  width: 100%;
+  border-radius: 5px; 
+  padding: 29px 32px;
+  gap: 35px;
+}
+
+.title{
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--gray-medium);
+  margin-bottom: 20px;
+}
+
+.textFieldContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 35 px;
+}
