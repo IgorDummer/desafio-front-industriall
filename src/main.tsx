@@ -7,7 +7,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 /* Pages */
 import Home from './routes/Home.tsx';
-
+import Form from './routes/Form.tsx';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +18,10 @@ const router = createBrowserRouter([
         path: '/',
         element: <Home />,
       },
+      {
+        path: '/new-meeting-minutes',
+        element: <Form />,
+      }
     ],
   },
 ])

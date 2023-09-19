@@ -7,6 +7,7 @@ import AddIcon from '@mui/icons-material/Add';
 interface ButtonProps {
   title: string;
   color: "orange" | "gray" | "green";
+  onClick?: () => void;
 }
 
 // Crie um componente estilizado personalizado para cada cor
@@ -72,7 +73,7 @@ const iconStyle = {
   color: '#F5F5F5'
 };
 
-export default function ButtonCustomized({ title, color }: ButtonProps) {
+export default function ButtonCustomized({ title, color, onClick }: ButtonProps) {
   let CustomButton;
   const [haveIcon] = React.useState(color === 'orange' ? true : false);
 
@@ -91,9 +92,9 @@ export default function ButtonCustomized({ title, color }: ButtonProps) {
   }
 
   return (
-    <CustomButton variant="contained" className={classes.buttonFont}>
+    <CustomButton variant="contained" className={classes.buttonFont} onClick={onClick}>
       {haveIcon && <AddIcon style={iconStyle} />}
       {title}
-    </CustomButton>
+    </CustomButton >
   );
 }

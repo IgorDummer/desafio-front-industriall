@@ -7,9 +7,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center; /* Centraliza verticalmente */
-  margin-top: 32px;
-  margin-bottom: 32px;
-  width: 100%;
+  margin: 32px;
 }
 
 .title {

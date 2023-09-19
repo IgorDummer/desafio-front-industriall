@@ -5,7 +5,9 @@ import classes from "./Navbar.module.css"
 const Navbar: React.FC = () => {
   return (
     <div className={classes.navbar}>
-      <img src="IndustriAll.svg" alt="IndustriAll" />
+      <a href="https://industriall.ai/">
+        <img src="IndustriAll.svg" alt="IndustriAll" />
+      </a>
     </div>
   );
 };

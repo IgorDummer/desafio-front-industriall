@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 import classes from "./header.module.css"
 import CustomButton from '../common/Button';
 
@@ -10,12 +10,17 @@ interface HeaderProps {
 }
 
 
-export default function Header({ title, subtitle, hasButton }: HeaderProps) {
+
+
+export default function Header({ title, subtitle, hasButton, onClick }: HeaderProps) {
   const [buttonNewMinutes] = useState(hasButton ? true : false);
 
-  function toggleButton() {
-    console.log(buttonNewMinutes)
+  const navigate = useNavigate();
+
+  function handleButtonClick() {
+    navigate('/new-meeting-minutes');
   }
+
   return (
     <div className={classes.container}>
       <div className={classes.headerContainer}>
@@ -28,6 +33,7 @@ export default function Header({ title, subtitle, hasButton }: HeaderProps) {
             <CustomButton
               title="NOVA ATA"
               color="orange"
+              onClick={handleButtonClick}
             />
           </div>
         )}
