@@ -1,0 +1,23 @@
+.container{
+  background-color: var(--white);
+  width: 100%;
+  border-radius: 5px; 
+  padding: 29px 32px;
+  gap: 35px;
+}
+
+.minuteCard{
+  margin-bottom:35px;
+}
+
+.title{
+  font-weight: 700;
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: var(--primary-blue)
+}
+
+.horizontalLine{  
+  border-color: var(--gray-light);
+  height: 1px;
+}

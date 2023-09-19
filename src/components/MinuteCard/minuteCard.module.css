@@ -1,0 +1,24 @@
+.conteiner{
+  padding: 14px 16px 16px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text h1{
+  color: var(--black);
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 14px;
+}
+
+.text p{
+  color: var(--gray-darkest);
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.icon{
+  color: var(--gray-darkest);
+  cursor: pointer;
+}
