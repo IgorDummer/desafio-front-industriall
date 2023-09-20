@@ -33,6 +33,6 @@ interface TextFieldProps {
 
 export default function CustomTextField({ label, required }: TextFieldProps) {
   return (
-    <CssTextField label={label} id="custom-css-outlined-input" required={required ? true : false} fullWidth size="small" />
+    <CssTextField label={label} id="custom-css-outlined-input" required={required ? true : false} fullWidth size="small" sx={{ input: { color: '#312F2F' } }} />
   )
 }

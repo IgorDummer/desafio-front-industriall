@@ -1,5 +1,6 @@
 import classes from './newMinutesForm.module.css';
 import CustomTextField from '../common/TextField';
+import CustomizedSelect from '../common/Select';
 
 export default function NewMinutesForm() {
   return (
@@ -10,16 +11,21 @@ export default function NewMinutesForm() {
           label="Titulo"
           required
         />
-        <CustomTextField
+        <CustomizedSelect
           label="Titulo"
           required
         />
-        <CustomTextField
-          label="Titulo"
-          required
-        />
-        <CustomTextField
-          label="Titulo"
+        <div className={classes.dateInput}>
+          <CustomTextField
+            label="Data e Horário de Início"
+            required
+          />
+          <CustomTextField
+            label="Data e Horário de Fim"
+          />
+        </div>
+        <CustomizedSelect
+          label="Tipo de Reunião"
           required
         />
       </div>
