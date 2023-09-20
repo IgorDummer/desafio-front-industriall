@@ -1,4 +1,5 @@
 import { MenuItem, TextField, styled } from '@mui/material';
+import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 
 interface SelectProps {
   label: string;
@@ -41,6 +42,9 @@ export default function CustomizedSelect({ label, required }: SelectProps) {
       fullWidth
       size="small"
       sx={{ input: { color: '#312F2F' } }}
+      SelectProps={{
+        IconComponent: KeyboardArrowDownOutlinedIcon,
+      }}
     >
       <MenuItem key={1} value="test">
         Test 1
