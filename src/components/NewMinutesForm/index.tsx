@@ -1,6 +1,7 @@
 import classes from './newMinutesForm.module.css';
 import CustomTextField from '../common/TextField';
 import CustomizedSelect from '../common/Select';
+import BasicDatePicker from '../common/DatePicker';
 
 export default function NewMinutesForm() {
   return (
@@ -16,11 +17,11 @@ export default function NewMinutesForm() {
           required
         />
         <div className={classes.dateInput}>
-          <CustomTextField
+          <BasicDatePicker
             label="Data e Horário de Início"
             required
           />
-          <CustomTextField
+          <BasicDatePicker
             label="Data e Horário de Fim"
           />
         </div>

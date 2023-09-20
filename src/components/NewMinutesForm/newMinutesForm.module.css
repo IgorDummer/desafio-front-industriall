@@ -21,4 +21,13 @@
 
 .dateInput{
   display: flex;
+  justify-content: space-between;
+}
+
+.dateInput > :first-child {
+  margin-right: 15px;
+}
+
+.dateInput > :last-child {
+  margin-left: 15px;
 }
