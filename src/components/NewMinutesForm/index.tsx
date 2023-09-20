@@ -1,7 +1,8 @@
-import classes from './newMinutesForm.module.css';
 import CustomTextField from '../common/TextField';
 import CustomizedSelect from '../common/Select';
-import BasicDatePicker from '../common/DatePicker';
+import BasicDatePicker from '../common/DateTimePicker';
+
+import classes from './newMinutesForm.module.css';
 
 export default function NewMinutesForm() {
   return (
