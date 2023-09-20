@@ -3,10 +3,14 @@
   width: 100%;
   border-radius: 5px; 
   padding: 29px 32px;
-  height: 70vh;
   display: flex;
-  flex-direction: column; /* Para alinhar os elementos verticalmente */
+  flex-direction: column;
   justify-content: space-between;
+  min-height: 70vh;
+}
+
+.marginTop{
+  margin-top: 41px;
 }
 
 .title{
