@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import classes from "./header.module.css"
-import CustomButton from '../common/Button';
+import ButtonCustomized from '../common/Button';
 
 interface HeaderProps {
   title: string;
@@ -30,7 +30,7 @@ export default function Header({ title, subtitle, hasButton, onClick }: HeaderPr
         </div>
         {buttonNewMinutes && (
           <div>
-            <CustomButton
+            <ButtonCustomized
               title="NOVA ATA"
               color="orange"
               onClick={handleButtonClick}
