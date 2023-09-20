@@ -68,6 +68,10 @@ export default function MeetingMinutesList() {
   const groupedAtas = groupAtasByType(orderedByType);
   const objectKeys = Object.keys(groupedAtas);
 
+  async function handleDeleteSuccess() {
+    await getAtas();
+  }
+
   return (
     <section className={classes.container}>
       {isLoading ? (
@@ -85,6 +89,7 @@ export default function MeetingMinutesList() {
                   title={ata.titulo}
                   initDate={ata.dataInicio}
                   local={ata.local}
+                  onDeleteSuccess={handleDeleteSuccess}
                 />
                 {indexAtas !== atas.length - 1 && <hr />}
               </div>

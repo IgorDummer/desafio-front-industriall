@@ -40,7 +40,7 @@ const CssTextField = styled(TextField)({
 export default function BasicDatePicker({ label, required }: DatePickerProps) {
   const [isRequired] = useState(required ? true : false)
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-ge">
+    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ptBR">
       <DateTimePicker label={label}
         slotProps={{ textField: { size: 'small', fullWidth: true, required: isRequired } }}
         slots={{
