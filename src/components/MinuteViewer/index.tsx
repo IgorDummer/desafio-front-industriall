@@ -62,7 +62,7 @@ export default function MinuteViewer({ id }: MinuteViewerProps) {
           <div>
             {
               campo.valor !== '' && (
-                <div style={{ height: '9rem', paddingBottom: '20px' }}>
+                <div >
                   <p key={campo.id} className={classes.textAreaTitle} > {campo.nome}</p>
                   <TextArea
                     key={campo.id}
@@ -121,50 +121,52 @@ export default function MinuteViewer({ id }: MinuteViewerProps) {
       {isLoading && <p className={classes.text}>Carregando...</p>}
       {ata && (
         <div>
-          <h1 className={classes.title}>Identificação</h1>
-          <div className={classes.textFieldContainer}>
-            <CustomTextField
-              label="Titulo"
-              value={ata.titulo}
-              readOnly
-            />
-            <CustomTextField
-              label="Local"
-              value={ata.local}
-              readOnly
-            />
-            <div>
-              <div className={classes.dateInput}>
-                <BasicDatePicker
-                  label="Data de Início"
-                  value={parseDate(ata.dataInicio)}
-                  readOnly
-                />
-                {ata.dataFim && (
+          <div>
+            <h1 className={classes.title}>Identificação</h1>
+            <div className={classes.textFieldContainer}>
+              <CustomTextField
+                label="Titulo"
+                value={ata.titulo}
+                readOnly
+              />
+              <CustomTextField
+                label="Local"
+                value={ata.local}
+                readOnly
+              />
+              <div>
+                <div className={classes.dateInput}>
                   <BasicDatePicker
-                    label="Data de Fim"
-                    value={parseDate(ata.dataFim)}
+                    label="Data de Início"
+                    value={parseDate(ata.dataInicio)}
                     readOnly
                   />
-                )}
+                  {ata.dataFim && (
+                    <BasicDatePicker
+                      label="Data de Fim"
+                      value={parseDate(ata.dataFim)}
+                      readOnly
+                    />
+                  )}
+                </div>
               </div>
+              <CustomTextField
+                label="Tipo de Reunião"
+                value={ata.tipoReuniao}
+                readOnly
+              />
             </div>
-            <CustomTextField
-              label="Tipo de Reunião"
-              value={ata.tipoReuniao}
-              readOnly
-            />
-          </div>
-          <div className={classes.marginTop}>
-            <h1 className={classes.title}>Conteúdo da Reunião</h1>
-            <div className={`${classes.textFieldContainer} ${classes.marginBottom}`}>
-              {ata.camposAtaReuniao.length === undefined ?
-                (
-                  <div className={classes.emptyType}>
-                    <p >Selecione o tipo de reunião</p>
-                  </div>
-                )
-                : renderMeetingFields()}
+            <div className={classes.marginTop}>
+              <h1 className={classes.title}>Conteúdo da Reunião</h1>
+              <div className={`${classes.textFieldContainer} ${classes.marginBottom}`}>
+                {ata.camposAtaReuniao.length === undefined ?
+                  (
+                    <div className={classes.emptyType}>
+                      <p >Selecione o tipo de reunião</p>
+                    </div>
+                  )
+                  : renderMeetingFields()}
+              </div>
             </div>
           </div>
           <div className={classes.buttonContainer}>
