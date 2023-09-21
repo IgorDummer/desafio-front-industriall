@@ -5,7 +5,6 @@ import ButtonCustomized from '../common/Button';
 import { MeetingType_I } from '../../interfaces/meetingType';
 import { Locations_I } from '../../interfaces/locations';
 
-import { TextField } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Dayjs } from 'dayjs';
