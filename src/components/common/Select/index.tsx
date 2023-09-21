@@ -1,12 +1,6 @@
 import { MenuItem, TextField, styled } from '@mui/material';
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 
-interface SelectProps {
-  label: string;
-  required?: boolean;
-}
-
-
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {
     color: '#FF4F2A',
@@ -32,7 +26,20 @@ const CssTextField = styled(TextField)({
   },
 });
 
-export default function CustomizedSelect({ label, required }: SelectProps) {
+interface SelectProps<T extends { id: number; nome: string }> {
+  label: string;
+  required?: boolean;
+  options: T[];
+  value: number | undefined;
+  onChange: (value: number | undefined) => void;
+}
+
+export default function CustomizedSelect<T extends { id: number; nome: string }>
+  ({ label,
+    required,
+    options,
+    value,
+    onChange, }: SelectProps<T>) {
 
   return (
     <CssTextField
@@ -46,12 +53,11 @@ export default function CustomizedSelect({ label, required }: SelectProps) {
         IconComponent: KeyboardArrowDownOutlinedIcon,
       }}
     >
-      <MenuItem key={1} value="test">
-        Test 1
-      </MenuItem>
-      <MenuItem key={2} value="test2">
-        Test 2
-      </MenuItem>
+      {options.map((option) => (
+        <MenuItem key={option.id} value={option.id} onClick={() => onChange(option.id)}>
+          {option.nome}
+        </MenuItem>
+      ))}
     </CssTextField>
   );
 }

@@ -1,5 +1,6 @@
 import TextField from '@mui/material/TextField';
 import { styled } from '@mui/styles';
+import { useState } from 'react';
 
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {
@@ -23,16 +24,29 @@ const CssTextField = styled(TextField)({
     fontSize: '16px',
     fontWeight: '400',
     alignItems: 'center',
+    backgroundColor: '#F5F5F5'
   },
 });
 
 interface TextFieldProps {
   label: string;
   required?: boolean;
+  value?: string | undefined;
+  onChange?: (value: string | undefined) => void;
 }
 
-export default function CustomTextField({ label, required }: TextFieldProps) {
+export default function CustomTextField({ label, required, value, onChange }: TextFieldProps) {
+  const [isFilled] = useState(Boolean(value ? true : false));
+
   return (
-    <CssTextField label={label} id="custom-css-outlined-input" required={required ? true : false} fullWidth size="small" sx={{ input: { color: '#312F2F' } }} />
+    <CssTextField label={label}
+      id="custom-css-outlined-input"
+      required={required ? true : false}
+      fullWidth
+      size="small"
+      sx={{ input: { color: '#312F2F' } }}
+      value={value || ''}
+      onChange={(event) => onChange?.(event.target.value)}
+    />
   )
 }

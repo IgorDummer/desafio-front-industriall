@@ -1,16 +1,15 @@
 import { useState } from 'react';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers';
 import TodayOutlinedIcon from '@mui/icons-material/TodayOutlined';
+import { ptBR } from '@mui/x-date-pickers/locales';
+
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import 'dayjs/locale/pt-br';
 
 import { TextField } from '@mui/material';
 import { styled } from '@mui/styles';
-
-interface DatePickerProps {
-  label: string;
-  required?: boolean;
-}
+import { Dayjs } from 'dayjs';
 
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {
@@ -37,16 +36,28 @@ const CssTextField = styled(TextField)({
   },
 });
 
-export default function BasicDatePicker({ label, required }: DatePickerProps) {
+interface DatePickerProps {
+  label: string;
+  required?: boolean;
+  value?: Dayjs | null;
+  onChange?: (newValue: Dayjs | null) => void;
+}
+
+export default function BasicDatePicker({ label, required, value, onChange }: DatePickerProps) {
   const [isRequired] = useState(required ? true : false)
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ptBR">
-      <DateTimePicker label={label}
+    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="pt-br"
+      localeText={ptBR.components.MuiLocalizationProvider.defaultProps.localeText}
+    >
+      <DateTimePicker
+        label={label}
         slotProps={{ textField: { size: 'small', fullWidth: true, required: isRequired } }}
         slots={{
           textField: textFieldProps => <CssTextField {...textFieldProps} />,
           openPickerIcon: TodayOutlinedIcon
         }}
+        value={value}
+        onChange={onChange}
       />
     </LocalizationProvider>
   );
