@@ -25,6 +25,12 @@ export default function NewMinutesForm() {
   const [endDate, setEndDate] = useState<Dayjs | null>(null);
   const [selectedType, setSelectedType] = useState<number | undefined>(undefined);
 
+  /* Controle de campos obrigatórios */
+  const [errorTitle, setErrorTitle] = useState(false);
+  const [errorStartDate, setErrorStartDate] = useState(false);
+  const [errorSelectedType, setErrorSelectedType] = useState(false);
+  const [errorSelectedLocation, setErrorSelectedLocation] = useState(false);
+
   /* Campos dinâmicos */
   const [textAreaValues, setTextAreaValues] = useState<Record<number, string>>({});
   const [dateTimeValues, setDateTimeValues] = useState<Record<number, Dayjs | null>>({});
@@ -66,17 +72,6 @@ export default function NewMinutesForm() {
     }
   }
 
-  useEffect(() => {
-    getLocations();
-    getMeetingType();
-  }, []);
-
-  useEffect(() => {
-    if (selectedType !== undefined) {
-      getMeetingTypeById();
-    }
-  }, [selectedType]);
-
   /* Campos dinâmicos */
   function handleTextAreaChange(campoId: number, value: string) {
     setTextAreaValues((prevValues) => ({
@@ -98,6 +93,17 @@ export default function NewMinutesForm() {
       [campoId]: value,
     }));
   }
+
+  useEffect(() => {
+    getLocations();
+    getMeetingType();
+  }, []);
+
+  useEffect(() => {
+    if (selectedType !== undefined) {
+      getMeetingTypeById();
+    }
+  }, [selectedType]);
 
   function renderMeetingFields() {
     if (isLoading) {
@@ -164,7 +170,45 @@ export default function NewMinutesForm() {
     setTextValues({});
   }
 
+  function validateFields() {
+    let isValid = true;
+    console.log(title)
+    if (!title) {
+      setErrorTitle(true);
+      isValid = false;
+    } else {
+      setErrorTitle(false);
+    }
+
+    if (!startDate) {
+      setErrorStartDate(true);
+      isValid = false;
+    } else {
+      setErrorStartDate(false);
+    }
+
+    if (!selectedType) {
+      setErrorSelectedType(true);
+      isValid = false;
+    } else {
+      setErrorSelectedType(false);
+    }
+
+    if (!selectedLocation) {
+      setErrorSelectedLocation(true);
+      isValid = false;
+    } else {
+      setErrorSelectedLocation(false);
+    }
+
+    return isValid;
+  }
+
   async function handleSaveButtonClick() {
+    if (!validateFields()) {
+      return;
+    }
+
     const camposAtaReuniao: { campoId: number; valor: string }[] = [];
 
     if (selectedMeetingType && selectedMeetingType.campos) {
@@ -221,43 +265,56 @@ export default function NewMinutesForm() {
       <div>
         <h1 className={classes.title}>Identificação</h1>
         <div className={classes.textFieldContainer}>
-          <CustomTextField
-            label="Titulo"
-            required
-            value={title}
-            onChange={setTitle}
-          />
-          <CustomizedSelect<Locations_I>
-            label="Local"
-            required
-            options={locationsData}
-            value={selectedLocation}
-            onChange={setSelectedLocation}
-          />
-          <div className={classes.dateInput}>
-            <BasicDatePicker
-              label="Data e Horário de Início"
+          <div>
+            <CustomTextField
+              label="Titulo"
               required
-              value={startDate}
-              onChange={setStartDate}
+              value={title}
+              onChange={setTitle}
             />
-            <BasicDatePicker
-              label="Data e Horário de Fim"
-              value={endDate}
-              onChange={setEndDate}
-            />
+            {errorTitle ? <p className={classes.error}>Campo obrigatório</p> : ''}
           </div>
-          <CustomizedSelect<MeetingType_I>
-            label="Tipo de Reunião"
-            required
-            options={meetingTypeData}
-            value={selectedType}
-            onChange={(newValue) => {
-              clearDynamicFields();
-              setSelectedType(newValue);
-              getMeetingTypeById()
-            }}
-          />
+          <div>
+            <CustomizedSelect<Locations_I>
+              label="Local"
+              required
+              options={locationsData}
+              value={selectedLocation}
+              onChange={setSelectedLocation}
+            />
+            {errorSelectedLocation ? <p className={classes.error}>Campo obrigatório</p> : ''}
+          </div>
+          <div>
+            <div className={classes.dateInput}>
+              <BasicDatePicker
+                label="Data e Horário de Início"
+                required
+                value={startDate}
+                onChange={setStartDate}
+              />
+
+              <BasicDatePicker
+                label="Data e Horário de Fim"
+                value={endDate}
+                onChange={setEndDate}
+              />
+            </div>
+            {errorStartDate ? <p className={classes.error}>Campo obrigatório</p> : ''}
+          </div>
+          <div>
+            <CustomizedSelect<MeetingType_I>
+              label="Tipo de Reunião"
+              required
+              options={meetingTypeData}
+              value={selectedType}
+              onChange={(newValue) => {
+                clearDynamicFields();
+                setSelectedType(newValue);
+                getMeetingTypeById()
+              }}
+            />
+            {errorSelectedType ? <p className={classes.error}>Campo obrigatório</p> : ''}
+          </div>
         </div>
         <div className={classes.marginTop}>
           <h1 className={classes.title}>Conteúdo da Reunião</h1>
