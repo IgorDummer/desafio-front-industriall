@@ -100,6 +100,7 @@ Se você tem alguma sugestão que fará este app ficar melhor, por favor realize
 ## ✉️ Contato
 
 E-mail: igordummer@outlook.com
+
 Linkedin: https://www.linkedin.com/in/igor-dummer/
 
 Link do projeto: https://github.com/IgorDummer/desafio-frontend
