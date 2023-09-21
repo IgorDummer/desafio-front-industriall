@@ -24,7 +24,7 @@ export default function BasicModal({ handleClose, deleteMinute, open, minute }: 
           <h1 className={classes.title}>Deseja deletar a ata {minute}?</h1>
           <div className={classes.buttonContainer}>
             <ButtonCustomized color="gray" title="Cancelar" onClick={handleClose} />
-            <ButtonCustomized color="green" title="Deletar" onClick={deleteMinute} />
+            <ButtonCustomized color="red" title="Deletar" onClick={deleteMinute} />
           </div>
         </div>
       </Modal>

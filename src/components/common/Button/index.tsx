@@ -6,7 +6,7 @@ import AddIcon from '@mui/icons-material/Add';
 
 interface ButtonProps {
   title: string;
-  color: "orange" | "gray" | "green";
+  color: "orange" | "gray" | "green" | "red";
   onClick?: () => void;
 }
 
@@ -68,6 +68,25 @@ const GreenButton = styled(Button)`
   }
 `;
 
+const RedButton = styled(Button)`
+  font-family: Calibri, sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 5px 13px;
+  border-radius: 5px;
+  transition: all 150ms ease;
+  cursor: pointer;
+  border: none;
+  heigh: auto;
+  gap: 10px;
+  background-color: #eb1c1c; // Cor verde
+  color: #E4E6F0; // Cor do texto branca
+
+  &:hover {
+    background-color: #b91c1c;
+  }
+`;
+
 const iconStyle = {
   fontSize: 'medium',
   color: '#F5F5F5'
@@ -86,6 +105,9 @@ export default function ButtonCustomized({ title, color, onClick }: ButtonProps)
       break;
     case "green":
       CustomButton = GreenButton;
+      break;
+    case "red":
+      CustomButton = RedButton;
       break;
     default:
       CustomButton = OrangeButton;
