@@ -29,9 +29,9 @@ const CssTextField = styled(TextField)({
 interface SelectProps<T extends { id: number; nome: string }> {
   label: string;
   required?: boolean;
-  options: T[];
+  options?: T[];
   value: number | undefined;
-  onChange: (value: number | undefined) => void;
+  onChange?: (value: number | undefined) => void;
 }
 
 export default function CustomizedSelect<T extends { id: number; nome: string }>

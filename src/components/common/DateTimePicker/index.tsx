@@ -41,10 +41,13 @@ interface DatePickerProps {
   required?: boolean;
   value?: Dayjs | null;
   onChange?: (newValue: Dayjs | null) => void;
+  readOnly?: boolean;
 }
 
-export default function BasicDatePicker({ label, required, value, onChange }: DatePickerProps) {
+export default function BasicDatePicker({ label, required, value, onChange, readOnly }: DatePickerProps) {
   const [isRequired] = useState(required ? true : false)
+  const [isReadOnly] = useState(readOnly ? true : false)
+
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="pt-br"
       localeText={ptBR.components.MuiLocalizationProvider.defaultProps.localeText}
@@ -53,7 +56,13 @@ export default function BasicDatePicker({ label, required, value, onChange }: Da
         label={label}
         slotProps={{ textField: { size: 'small', fullWidth: true, required: isRequired } }}
         slots={{
-          textField: textFieldProps => <CssTextField {...textFieldProps} />,
+          textField: textFieldProps =>
+            <CssTextField
+              InputProps={{
+                readOnly: isReadOnly,
+              }}
+              {...textFieldProps}
+            />,
           openPickerIcon: TodayOutlinedIcon
         }}
         value={value}

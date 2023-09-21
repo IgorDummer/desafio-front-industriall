@@ -7,6 +7,7 @@ import BasicModal from '../common/Modal/modal';
 
 import api from '../../services/api';
 import classes from './minuteCard.module.css';
+import { useNavigate } from 'react-router-dom';
 
 interface MinuteCardProps {
   id: number,
@@ -18,7 +19,8 @@ interface MinuteCardProps {
 
 export default function MinuteCard({ id, title, initDate, local, onDeleteSuccess }: MinuteCardProps) {
   const [deleteButton, setDeleteButton] = React.useState(false);
-  const [visibilityButton, setVisibilityButton] = React.useState(false);
+
+  const navigate = useNavigate();
 
   function formatDate(dateString: string): string {
     const date = dayjs(dateString);
@@ -41,8 +43,8 @@ export default function MinuteCard({ id, title, initDate, local, onDeleteSuccess
     setDeleteButton(!deleteButton)
   }
 
-  function toggleVisibilityButton() {
-    setVisibilityButton(!visibilityButton)
+  function handleVisibilityButton() {
+    navigate(`/ata/${id}`)
   }
 
   return (
@@ -52,7 +54,7 @@ export default function MinuteCard({ id, title, initDate, local, onDeleteSuccess
         <p>{formatDate(initDate)}, na {local}</p>
       </div>
       <div>
-        <VisibilityOutlinedIcon className={classes.icon} style={{ marginRight: "16px" }} onClick={toggleVisibilityButton} />
+        <VisibilityOutlinedIcon className={classes.icon} style={{ marginRight: "16px" }} onClick={handleVisibilityButton} />
         <DeleteOutlineIcon className={classes.icon} onClick={toggleDeleteButton} />
         {deleteButton && (
           <BasicModal minute={title}

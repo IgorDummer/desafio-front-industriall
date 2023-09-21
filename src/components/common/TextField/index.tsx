@@ -33,10 +33,11 @@ interface TextFieldProps {
   required?: boolean;
   value?: string | undefined;
   onChange?: (value: string | undefined) => void;
+  readOnly?: boolean;
 }
 
-export default function CustomTextField({ label, required, value, onChange }: TextFieldProps) {
-  const [isFilled] = useState(Boolean(value ? true : false));
+export default function CustomTextField({ label, required, value, onChange, readOnly }: TextFieldProps) {
+  const [isReadOnly] = useState(Boolean(readOnly ? true : false));
 
   return (
     <CssTextField label={label}
@@ -47,6 +48,9 @@ export default function CustomTextField({ label, required, value, onChange }: Te
       sx={{ input: { color: '#312F2F' } }}
       value={value || ''}
       onChange={(event) => onChange?.(event.target.value)}
+      InputProps={{
+        readOnly: isReadOnly,
+      }}
     />
   )
 }
