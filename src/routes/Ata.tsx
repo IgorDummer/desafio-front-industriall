@@ -3,8 +3,8 @@ import MinuteViewer from '../components/MinuteViewer';
 import '../index.css'
 import { useParams } from 'react-router-dom';
 
-
 const Ata = () => {
+  /* Recebe o id como parâmetro */
   const { id } = useParams();
 
   return (

@@ -77,3 +77,24 @@
   margin-left: 10px;
   font-weight: 600;
 }
+
+.emptyType{
+  min-height: 85px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.emptyType p{
+  font-weight: 400;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--gray-medium)
+}
+
+.text{
+  font-weight: 500;
+  font-size: 20px;
+  color: var(--gray-darkest);
+}

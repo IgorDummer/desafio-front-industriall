@@ -1,9 +1,12 @@
 import axios from 'axios';
 
+/* Definição da API */
+/* No meu caso, foi utilizado um .env, a qual possuia a apiKey na variavel VITE_API_KEY */
+
 const api = axios.create({
-  baseURL: 'https://desafio-iall.azurewebsites.net/api', // Use a URL base da sua API
+  baseURL: 'https://desafio-iall.azurewebsites.net/api',
   headers: {
-    'Authorization': `Bearer ${import.meta.env.VITE_API_KEY}`, // Adicione sua apiKey como cabeçalho, se necessário
+    'Authorization': `Bearer ${import.meta.env.VITE_API_KEY}`,
   },
 });
 

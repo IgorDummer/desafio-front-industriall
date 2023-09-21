@@ -11,6 +11,7 @@ import { TextField } from '@mui/material';
 import { styled } from '@mui/styles';
 import { Dayjs } from 'dayjs';
 
+/* Estilização do material-ui */
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {
     color: '#FF4F2A',

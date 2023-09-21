@@ -14,11 +14,14 @@ import classes from './newMinutesForm.module.css';
 import TextArea from '../common/TextArea';
 
 export default function NewMinutesForm() {
+  /* Dados obtidos pela API */
   const [locationsData, setLocationsData] = useState<Locations_I[]>([]);
   const [meetingTypeData, setMeetingTypeData] = useState<MeetingType_I[]>([]);
   const [selectedMeetingType, setSelectedMeetingType] = useState<MeetingType_I | null>(null);
+
   const [isLoading, setIsLoading] = useState(false);
 
+  /* Dados dos values dos componentes, a serem enviados para o POST */
   const [title, setTitle] = useState<string | undefined>(undefined);
   const [selectedLocation, setSelectedLocation] = useState<number | undefined>(undefined);
   const [startDate, setStartDate] = useState<Dayjs | null>(null);
@@ -42,6 +45,7 @@ export default function NewMinutesForm() {
     navigate('/');
   }
 
+  /* Requisição GET dos locais */
   async function getLocations() {
     try {
       const response = await api.get('/Locais');
@@ -51,6 +55,7 @@ export default function NewMinutesForm() {
     }
   }
 
+  /* Requisição GET dos tipos de reunião */
   async function getMeetingType() {
     try {
       const response = await api.get('/TiposReuniao');
@@ -60,6 +65,7 @@ export default function NewMinutesForm() {
     }
   }
 
+  /* Requisição GET do tipo de reunião selecionado */
   async function getMeetingTypeById() {
     setIsLoading(true);
     try {
@@ -72,7 +78,7 @@ export default function NewMinutesForm() {
     }
   }
 
-  /* Campos dinâmicos */
+  /* Obtem os valores de todos os TextArea dos campos dinâmicos */
   function handleTextAreaChange(campoId: number, value: string) {
     setTextAreaValues((prevValues) => ({
       ...prevValues,
@@ -80,6 +86,7 @@ export default function NewMinutesForm() {
     }));
   }
 
+  /* Obtem os valores de todos os DateTime dos campos dinâmicos */
   function handleDateTimeChange(campoId: number, value: Dayjs | null) {
     setDateTimeValues((prevValues) => ({
       ...prevValues,
@@ -87,6 +94,7 @@ export default function NewMinutesForm() {
     }));
   }
 
+  /* Obtem os valores de todos os TextField dos campos dinâmicos */
   function handleTextChange(campoId: number, value: string) {
     setTextValues((prevValues) => ({
       ...prevValues,
@@ -94,11 +102,13 @@ export default function NewMinutesForm() {
     }));
   }
 
+  /* Requisição ao carregar a página */
   useEffect(() => {
     getLocations();
     getMeetingType();
   }, []);
 
+  /* Faz requisição quando o valor de selectedType atualizar */
   useEffect(() => {
     if (selectedType !== undefined) {
       getMeetingTypeById();
@@ -114,6 +124,9 @@ export default function NewMinutesForm() {
       return null;
     }
 
+    /* Renderiza cada componente de acordo com o seu tipo, podendo ser Textarea,
+        DateTime ou TextField
+     */
     return selectedMeetingType.campos.map((campo) => {
       if (campo.tipo === 'textarea') {
         return (
@@ -159,12 +172,16 @@ export default function NewMinutesForm() {
     });
   }
 
+
+  /* Limpa as listas cada vez que o valor do tipo selecionado é trocado */
   function clearDynamicFields() {
     setTextAreaValues({});
     setDateTimeValues({});
     setTextValues({});
   }
 
+  /* Valida dos dados de entrada e retorna erro caso 
+      um campo obrigatório não tenha sido preenchido */
   function validateFields() {
     let isValid = true;
     console.log(title)
@@ -206,6 +223,7 @@ export default function NewMinutesForm() {
 
     const camposAtaReuniao: { campoId: number; valor: string }[] = [];
 
+    /* analisa cada campo lido e armazena o id e o valor em camposAtaReuniao */
     if (selectedMeetingType && selectedMeetingType.campos) {
       selectedMeetingType.campos.forEach((campo) => {
         const campoId = campo.id;
@@ -226,6 +244,9 @@ export default function NewMinutesForm() {
       });
     }
 
+    /* Define os dados a serem enviados para o POST 
+        Nesse caso, dataFim é um campo opcional, portanto pode não ser incluído
+    */
     const postData: {
       titulo: string;
       dataInicio: string;

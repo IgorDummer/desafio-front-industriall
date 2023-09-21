@@ -27,6 +27,7 @@ export default function MinuteViewer({ id }: MinuteViewerProps) {
     navigate('/');
   }
 
+  /* Requisição GET da ata */
   async function getMinuteData() {
     setIsLoading(true);
     try {
@@ -40,21 +41,21 @@ export default function MinuteViewer({ id }: MinuteViewerProps) {
   }
 
   useEffect(() => {
-    console.log(id)
     getMinuteData()
   }, []);
 
+  /* Conversão da data */
   function parseDate(dateString: string | null): Dayjs | null {
     if (!dateString) return null;
     return dayjs(dateString);
   }
-
 
   function renderMeetingFields() {
     if (!ata || !ata.camposAtaReuniao) {
       return null;
     }
 
+    /* Faz um map de todos os campos e renderiza de acordo com seu tipo */
     return ata.camposAtaReuniao.map((campo) => {
       if (campo.tipo === 'textarea') {
         return (
@@ -158,7 +159,11 @@ export default function MinuteViewer({ id }: MinuteViewerProps) {
             <h1 className={classes.title}>Conteúdo da Reunião</h1>
             <div className={`${classes.textFieldContainer} ${classes.marginBottom}`}>
               {ata.camposAtaReuniao.length === undefined ?
-                <p>paulo</p>
+                (
+                  <div className={classes.emptyType}>
+                    <p >Selecione o tipo de reunião</p>
+                  </div>
+                )
                 : renderMeetingFields()}
             </div>
           </div>

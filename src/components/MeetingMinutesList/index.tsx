@@ -10,11 +10,13 @@ export default function MeetingMinutesList() {
   const [groupedAtas, setGroupedAtas] = useState<{ [key: string]: MeetingMinutes_I[] }>({});
   const [isLoading, setIsLoading] = useState(false);
 
+  /* Faz requisição para a API para retornar as atas */
   async function getAtas() {
     try {
       const response = await api.get('/Atas');
       const atasData = response.data as MeetingMinutes_I[];
 
+      /* Ordena as atas de acordo nome do tipo de reunião e a data de início */
       const orderedData = sortAtasByTypeAndDate(atasData);
       const groupedData = groupAtasByType(orderedData);
 
@@ -38,9 +40,10 @@ export default function MeetingMinutesList() {
       if (ataA.tipoReuniao > ataB.tipoReuniao) {
         return 1;
       }
-      // Se os tipos forem iguais, compare as datas de início
+      /* Caso os tipos forem iguais, ordena de acordo com a data de início, 
+          do mais recente para o mais antigo */
       if (ataA.dataInicio < ataB.dataInicio) {
-        return 1; // Ordenar da mais recente para a mais antiga
+        return 1;
       }
       if (ataA.dataInicio > ataB.dataInicio) {
         return -1;
@@ -49,6 +52,7 @@ export default function MeetingMinutesList() {
     });
   }
 
+  /* Agrupa as atas de acordo com o tipo de reunião */
   function groupAtasByType(atas: MeetingMinutes_I[]) {
     const groupedAtas: { [key: string]: MeetingMinutes_I[] } = {};
 
@@ -75,6 +79,8 @@ export default function MeetingMinutesList() {
       ) : objectKeys.length === 0 ? (
         <p className={classes.text}>Nenhuma ata cadastrada.</p>
       ) : (
+        /* Mapeia cada tipo de reunião, para posteriormente mapear as atas 
+              e renderizar o componente do Card */
         Object.entries(groupedAtas).map(([tipoReuniao, atas], index) => (
           <div key={tipoReuniao} className={index !== objectKeys.length - 1 ? classes.minuteCard : ''}>
             <h2 className={classes.title}>{tipoReuniao}</h2>

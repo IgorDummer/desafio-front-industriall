@@ -22,12 +22,13 @@ export default function MinuteCard({ id, title, initDate, local, onDeleteSuccess
 
   const navigate = useNavigate();
 
+  /* Faz a conversão proposta */
   function formatDate(dateString: string): string {
     const date = dayjs(dateString);
     return date.format('DD/MM/YYYY [às] HH:mm');
   }
 
-
+  /* Requisição DELETE para a api */
   async function deleteMinute() {
     try {
       const response = await api.delete(`/Atas/${id}`);

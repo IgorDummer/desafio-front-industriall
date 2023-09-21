@@ -10,6 +10,7 @@ import Home from './routes/Home.tsx';
 import Form from './routes/Form.tsx';
 import Ata from './routes/Ata.tsx';
 
+/* Rotas da aplicação */
 const router = createBrowserRouter([
   {
     path: '/',
@@ -17,15 +18,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Home />,
+        element: <Home />, /* Onde ocorre a listagem de Atas */
       },
       {
         path: '/new-meeting-minutes',
-        element: <Form />,
+        element: <Form />, /* Onde é criada uma nova Ata */
       },
       {
         path: '/ata/:id',
-        element: <Ata />,
+        element: <Ata />, /* Visualização dos dados da Ata */
       }
     ],
   },

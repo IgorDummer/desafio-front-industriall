@@ -1,6 +1,7 @@
 import { MenuItem, TextField, styled } from '@mui/material';
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 
+/* Estilização do material-ui */
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {
     color: '#FF4F2A',
@@ -26,6 +27,7 @@ const CssTextField = styled(TextField)({
   },
 });
 
+/* Select genérico */
 interface SelectProps<T extends { id: number; nome: string }> {
   label: string;
   required?: boolean;

@@ -10,7 +10,7 @@ interface ButtonProps {
   onClick?: () => void;
 }
 
-// Crie um componente estilizado personalizado para cada cor
+/* Por conta da definição do estilo no material-ui, foi criado um botão para cada tipo de cor */
 const OrangeButton = styled(Button)`
   font-family: Calibri, sans-serif;
   font-weight: 700;
@@ -96,6 +96,7 @@ export default function ButtonCustomized({ title, color, onClick }: ButtonProps)
   let CustomButton;
   const [haveIcon] = React.useState(color === 'orange' ? true : false);
 
+  /* Analisa a cor escolhida para o botão */
   switch (color) {
     case "orange":
       CustomButton = OrangeButton;

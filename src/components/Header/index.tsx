@@ -9,6 +9,7 @@ interface HeaderProps {
   hasButton?: boolean;
 }
 
+/* Componente comum para todas as páginas */
 export default function Header({ title, subtitle, hasButton }: HeaderProps) {
   const [buttonNewMinutes] = useState(hasButton ? true : false);
 

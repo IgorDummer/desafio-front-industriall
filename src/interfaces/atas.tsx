@@ -12,6 +12,6 @@ export interface MeetingMinutes_I {
 export interface MinutesField_I {
   id: number,
   nome: string,
-  tipo: string, // fazer enum
+  tipo: string,
   valor: string
 }

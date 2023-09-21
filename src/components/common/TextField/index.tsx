@@ -2,6 +2,7 @@ import TextField from '@mui/material/TextField';
 import { styled } from '@mui/styles';
 import { useState } from 'react';
 
+/* Estilização do material-ui */
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {
     color: '#FF4F2A',
