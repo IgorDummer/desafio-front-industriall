@@ -1,12 +1,12 @@
-import classes from './minuteCard.module.css';
-
+import React from 'react';
+import dayjs from 'dayjs';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 
-import React from 'react';
 import BasicModal from '../common/Modal/modal';
 
 import api from '../../services/api';
+import classes from './minuteCard.module.css';
 
 interface MinuteCardProps {
   id: number,
@@ -19,6 +19,12 @@ interface MinuteCardProps {
 export default function MinuteCard({ id, title, initDate, local, onDeleteSuccess }: MinuteCardProps) {
   const [deleteButton, setDeleteButton] = React.useState(false);
   const [visibilityButton, setVisibilityButton] = React.useState(false);
+
+  function formatDate(dateString: string): string {
+    const date = dayjs(dateString);
+    return date.format('DD/MM/YYYY [às] HH:mm');
+  }
+
 
   async function deleteMinute() {
     try {
@@ -43,7 +49,7 @@ export default function MinuteCard({ id, title, initDate, local, onDeleteSuccess
     <div className={classes.conteiner}>
       <div className={classes.text}>
         <h1>{title}</h1>
-        <p>{initDate}, na {local}</p>
+        <p>{formatDate(initDate)}, na {local}</p>
       </div>
       <div>
         <VisibilityOutlinedIcon className={classes.icon} style={{ marginRight: "16px" }} onClick={toggleVisibilityButton} />

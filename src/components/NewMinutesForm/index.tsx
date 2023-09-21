@@ -1,16 +1,17 @@
 import CustomTextField from '../common/TextField';
 import CustomizedSelect from '../common/Select';
 import BasicDatePicker from '../common/DateTimePicker';
-
-import classes from './newMinutesForm.module.css';
 import ButtonCustomized from '../common/Button';
-import { useEffect, useState } from 'react';
-import { Locations_I } from '../../interfaces/locations';
-import api from '../../services/api';
 import { MeetingType_I } from '../../interfaces/meetingType';
-import { useNavigate } from 'react-router-dom';
-import dayjs, { Dayjs } from 'dayjs';
+import { Locations_I } from '../../interfaces/locations';
+
 import { TextField } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Dayjs } from 'dayjs';
+
+import api from '../../services/api';
+import classes from './newMinutesForm.module.css';
 
 export default function NewMinutesForm() {
   const [locationsData, setLocationsData] = useState<Locations_I[]>([]);
@@ -30,6 +31,10 @@ export default function NewMinutesForm() {
   const [textValues, setTextValues] = useState<Record<number, string>>({});
 
   const navigate = useNavigate();
+
+  function navigateToHome() {
+    navigate('/');
+  }
 
   async function getLocations() {
     try {
@@ -159,26 +164,6 @@ export default function NewMinutesForm() {
     setTextValues({});
   }
 
-  function ConsoleLog() {
-    console.log('Titulo:' + title);
-    console.log('Local selecionado:' + selectedLocation);
-    console.log('Data de Inicio:' + (startDate ? dayjs(startDate).format('YYYY-MM-DDTHH:mm:ss.SSS') : undefined));
-    console.log('Data de Fim:' + (endDate ? dayjs(endDate).format('YYYY-MM-DDTHH:mm:ss.SSS') : undefined));
-    console.log('Tipo selecionado:' + selectedType);
-
-    Object.entries(textAreaValues).forEach(([campoId, value]) => {
-      console.log(`Campo de Texto (ID ${campoId}): ${value}`);
-    });
-
-    Object.entries(dateTimeValues).forEach(([campoId, value]) => {
-      console.log(`Campo de Data/Hora (ID ${campoId}): ${value ? value.format('YYYY-MM-DDTHH:mm:ss.SSS') : undefined}`);
-    });
-
-    Object.entries(textValues).forEach(([campoId, value]) => {
-      console.log(`Campo de Texto Simples (ID ${campoId}): ${value}`);
-    });
-  }
-
   async function handleSaveButtonClick() {
     const camposAtaReuniao: { campoId: number; valor: string }[] = [];
 
@@ -229,10 +214,6 @@ export default function NewMinutesForm() {
     } catch (error) {
       console.error('Erro na requisição POST:', error);
     }
-  }
-
-  function navigateToHome() {
-    navigate('/');
   }
 
   return (

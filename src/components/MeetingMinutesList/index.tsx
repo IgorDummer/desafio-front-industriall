@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import api from '../../services/api';
 
-import classes from './meetingMinutesList.module.css';
-import { MeetingMinutes_I } from '../../interfaces/atas';
 import MinuteCard from '../MinuteCard';
+import { MeetingMinutes_I } from '../../interfaces/atas';
+
+import api from '../../services/api';
+import classes from './meetingMinutesList.module.css';
 
 export default function MeetingMinutesList() {
   const [groupedAtas, setGroupedAtas] = useState<{ [key: string]: MeetingMinutes_I[] }>({});
@@ -14,7 +15,6 @@ export default function MeetingMinutesList() {
       const response = await api.get('/Atas');
       const atasData = response.data as MeetingMinutes_I[];
 
-      // Ordenar os dados aqui
       const orderedData = sortAtasByTypeAndDate(atasData);
       const groupedData = groupAtasByType(orderedData);
 
@@ -71,7 +71,7 @@ export default function MeetingMinutesList() {
   return (
     <section className={classes.container}>
       {isLoading ? (
-        <p>Loading...</p>
+        <p>Carregando...</p>
       ) : objectKeys.length === 0 ? (
         <p>Nenhuma ata cadastrada.</p>
       ) : (

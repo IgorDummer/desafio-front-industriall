@@ -9,9 +9,6 @@ interface HeaderProps {
   hasButton?: boolean;
 }
 
-
-
-
 export default function Header({ title, subtitle, hasButton, onClick }: HeaderProps) {
   const [buttonNewMinutes] = useState(hasButton ? true : false);
 

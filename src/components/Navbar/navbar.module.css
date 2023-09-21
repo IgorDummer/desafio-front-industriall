@@ -1,12 +1,14 @@
 .navbar {
   display: flex;
-  justify-content: center; /* Centraliza horizontalmente */
-  align-items: center; /* Centraliza verticalmente */
+  justify-content: center;
+  align-items: center;
   height: 69px;
   background-color: var(--primary-blue);
 
-  /* Mantém  a Navbar fixa na tela */
+
   position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .logo {
