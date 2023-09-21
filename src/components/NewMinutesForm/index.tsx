@@ -132,13 +132,13 @@ export default function NewMinutesForm() {
         return (
           <div>
             <p key={campo.id} className={classes.textAreaTitle}>{campo.nome}</p>
-            <div style={{ height: '190px', marginBottom: '30px' }}>
+            <div style={{ height: '9rem', paddingBottom: '20px' }}>
               <TextArea
                 value={textAreaValues[campo.id]}
                 onChange={(value) => handleTextAreaChange(campo.id, value)}
               />
             </div>
-          </div>
+          </div >
         );
       } else if (campo.tipo === 'datetime') {
         return (

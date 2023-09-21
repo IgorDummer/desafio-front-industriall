@@ -62,7 +62,7 @@ export default function MinuteViewer({ id }: MinuteViewerProps) {
           <div>
             {
               campo.valor !== '' && (
-                <div style={{ height: '190px', marginBottom: '30px' }}>
+                <div style={{ height: '9rem', paddingBottom: '20px' }}>
                   <p key={campo.id} className={classes.textAreaTitle} > {campo.nome}</p>
                   <TextArea
                     key={campo.id}
