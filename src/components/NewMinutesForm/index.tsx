@@ -159,11 +159,11 @@ export default function NewMinutesForm() {
     setTextValues({});
   }
 
-  function handleButtonClick() {
+  function ConsoleLog() {
     console.log('Titulo:' + title);
     console.log('Local selecionado:' + selectedLocation);
-    console.log('Data de Inicio:' + (startDate ? dayjs(startDate).format('DD/MM/YYYY HH:mm') : 'N/A'));
-    console.log('Data de Fim:' + (endDate ? dayjs(endDate).format('DD/MM/YYYY HH:mm') : 'N/A'));
+    console.log('Data de Inicio:' + (startDate ? dayjs(startDate).format('YYYY-MM-DDTHH:mm:ss.SSS') : undefined));
+    console.log('Data de Fim:' + (endDate ? dayjs(endDate).format('YYYY-MM-DDTHH:mm:ss.SSS') : undefined));
     console.log('Tipo selecionado:' + selectedType);
 
     Object.entries(textAreaValues).forEach(([campoId, value]) => {
@@ -171,7 +171,7 @@ export default function NewMinutesForm() {
     });
 
     Object.entries(dateTimeValues).forEach(([campoId, value]) => {
-      console.log(`Campo de Data/Hora (ID ${campoId}): ${value ? value.format('DD/MM/YYYY HH:mm') : 'N/A'}`);
+      console.log(`Campo de Data/Hora (ID ${campoId}): ${value ? value.format('YYYY-MM-DDTHH:mm:ss.SSS') : undefined}`);
     });
 
     Object.entries(textValues).forEach(([campoId, value]) => {
@@ -179,7 +179,59 @@ export default function NewMinutesForm() {
     });
   }
 
-  function cancelButtonClick() {
+  async function handleSaveButtonClick() {
+    const camposAtaReuniao: { campoId: number; valor: string }[] = [];
+
+    if (selectedMeetingType && selectedMeetingType.campos) {
+      selectedMeetingType.campos.forEach((campo) => {
+        const campoId = campo.id;
+        let valor = '';
+
+        if (campo.tipo === 'textarea') {
+          valor = textAreaValues[campoId] || '';
+        } else if (campo.tipo === 'datetime') {
+          valor = dateTimeValues[campoId]?.format('YYYY-MM-DDTHH:mm:ss.SSS') ?? '';
+        } else if (campo.tipo === 'text') {
+          valor = textValues[campoId] || '';
+        }
+
+        camposAtaReuniao.push({
+          campoId,
+          valor,
+        });
+      });
+    }
+
+    const postData: {
+      titulo: string;
+      dataInicio: string;
+      tipoReuniaoId: number;
+      localId: number;
+      dataFim?: string;
+      camposAtaReuniao: { campoId: number; valor: string; }[];
+    } = {
+      titulo: title || '',
+      dataInicio: startDate?.format('YYYY-MM-DDTHH:mm:ss.SSS') || '',
+      tipoReuniaoId: selectedType || 0,
+      localId: selectedLocation || 0,
+      camposAtaReuniao,
+    };
+
+    if (endDate !== null) {
+      postData.dataFim = endDate.format('YYYY-MM-DDTHH:mm:ss.SSS');
+    }
+    console.log(postData);
+
+    try {
+      const response = await api.post('/Atas', postData);
+      console.log('Requisição POST bem-sucedida:', response.data);
+      navigateToHome();
+    } catch (error) {
+      console.error('Erro na requisição POST:', error);
+    }
+  }
+
+  function navigateToHome() {
     navigate('/');
   }
 
@@ -237,12 +289,12 @@ export default function NewMinutesForm() {
         <ButtonCustomized
           title="CANCELAR"
           color="gray"
-          onClick={cancelButtonClick}
+          onClick={navigateToHome}
         />
         <ButtonCustomized
           title="SALVAR ATA"
           color="green"
-          onClick={handleButtonClick}
+          onClick={handleSaveButtonClick}
         />
       </div>
     </div >

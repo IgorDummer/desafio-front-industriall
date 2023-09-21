@@ -6,14 +6,19 @@ import { MeetingMinutes_I } from '../../interfaces/atas';
 import MinuteCard from '../MinuteCard';
 
 export default function MeetingMinutesList() {
-  const [minutesData, setMinutesData] = useState<MeetingMinutes_I[]>([]);
-  const [orderedByType, setOrderedByType] = useState<MeetingMinutes_I[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [groupedAtas, setGroupedAtas] = useState<{ [key: string]: MeetingMinutes_I[] }>({});
+  const [isLoading, setIsLoading] = useState(false);
 
   async function getAtas() {
     try {
       const response = await api.get('/Atas');
-      setMinutesData(response.data as MeetingMinutes_I[]);
+      const atasData = response.data as MeetingMinutes_I[];
+
+      // Ordenar os dados aqui
+      const orderedData = sortAtasByTypeAndDate(atasData);
+      const groupedData = groupAtasByType(orderedData);
+
+      setGroupedAtas(groupedData)
       setIsLoading(false);
     } catch (error) {
       console.error('Error in GET request:', error);
@@ -25,15 +30,8 @@ export default function MeetingMinutesList() {
     getAtas();
   }, []);
 
-  useEffect(() => {
-    if (!isLoading) {
-      /* Ordenar somente após os dados terem sido completamente carregados */
-      sortAtasByTypeAndDate(minutesData);
-    }
-  }, [isLoading, minutesData]);
-
-  async function sortAtasByTypeAndDate(atas: MeetingMinutes_I[]) {
-    const orderedData = atas.sort((ataA, ataB) => {
+  function sortAtasByTypeAndDate(atas: MeetingMinutes_I[]) {
+    return atas.slice().sort((ataA, ataB) => {
       if (ataA.tipoReuniao < ataB.tipoReuniao) {
         return -1;
       }
@@ -49,7 +47,6 @@ export default function MeetingMinutesList() {
       }
       return 0;
     });
-    setOrderedByType(orderedData);
   }
 
   function groupAtasByType(atas: MeetingMinutes_I[]) {
@@ -65,7 +62,6 @@ export default function MeetingMinutesList() {
     return groupedAtas;
   }
 
-  const groupedAtas = groupAtasByType(orderedByType);
   const objectKeys = Object.keys(groupedAtas);
 
   async function handleDeleteSuccess() {
@@ -99,10 +95,4 @@ export default function MeetingMinutesList() {
       )}
     </section>
   );
-
-
-
-
-
-
 }
