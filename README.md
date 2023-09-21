@@ -1,132 +1,109 @@
-## Visão Geral - Contexto do desafio
+<div id="top"></div>
+<h1 align="center" style="color: black; font-weight: bold; font-size: 40px">
+iMeets
+</h1>
+<div style="display: row">
+  <img src="https://img.shields.io/badge/-ReactJs-61DAFB?logo=react&logoColor=white&style=for-the-badge" alt="React">
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="Typescript">
+</div>
 
-Você é responsável por implementar o nosso módulo de gestão de atas de reunião dentro da indústria! O módulo de atas permite criar atas online com base nos templates existentes, listá-las e organizá-las.
+<div id="sobre-o-projeto"> </div>
 
-Esse template, chamado _Tipo de Reunião_ possui campos (inputs) relacionados a ele. Um Tipo de Reunião chamado "Reunião Diária" poderia ter um campo de texto chamado "O que você fez hoje?", por exemplo. E um Tipo chamado "Acompanhamento de Projetos" poderia ter um campo de data chamado "Fim do Projeto". Assim, o módulo de atas funciona criando um formulário com campos diferentes, para cada Tipo de Reunião selecionado.
+## 📝 Sobre o projeto
 
-Como desafio, é esperado que você desenvolva o front-end de uma aplicação Web para trazer o protótipo desse módulo à realidade. O seu projeto deve consumir nossa API REST e replicar as funcionalidades descritas pelos requisitos e regras de negócio, além de seguir o design das telas determinado pelo mockup.
+iMeets é uma interface de gestão de atas de reunião. Se trata de um desafio proposto para a vaga de estágio para Desenvolvedor Front-end da [IndustriAll](https://industriall.ai/).
+O módulo de atas permite criar atas online com base nos templates existentes, listá-las e organizá-las.
 
-Todas as configurações relacionadas ao back-end (API e endpoints), serão disponibilizadas por nós. Sua função é apenas desenvolver a interface Web da listagem e do formulário de Atas e interagir com a API.
+É possível acessar a interface por meio do [deploy](https://desafio-frontend-igordummer.vercel.app/).
 
-## Desenvolvimento
 
-### Código
+<div id="feito-com"> </div>
 
-Recomendamos **fortemente** a utilização da biblioteca React para o desenvolvimento do front-end. Além disso, fique à vontade para utilizar quaisquer outras técnicas, bibliotecas e dependências para compor a aplicação.
+### 🔨 Feito com
 
-Os elementos do design que serão apresentados a seguir foram baseados no Material UI, mas a utilização dessa biblioteca não é obrigatória.
+Aqui estão algumas ferramentas que foram utilizadas:
 
-### Design
+* [ReactJS](https://react.dev/)
+* [Typescript](https://www.typescriptlang.org/)
+* [Vite](https://vitejs.dev/)
+* [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
-O design esperado para a aplicação está definido em um mockup do Figma.
+<div id="comecando"> </div>
 
-- [Telas do mockup](https://www.figma.com/file/kfO4pi7kyCRjuZQV3WMtcy/iMeets)
+<!-- GETTING STARTED -->
+## ⌨️ Começando
 
-  - Neste arquivo estão as telas separadas, onde é possível ver mais detalhes sobre o design, como fonte, cores, etc.
+Aqui estão algumas instruções sobre como configurar o projeto localmente. Para obter uma cópia local, siga os passos abaixo:
 
-- [Protótipo do mockup](https://www.figma.com/proto/kfO4pi7kyCRjuZQV3WMtcy/iMeets?page-id=0%3A1&node-id=1%3A2&viewport=790%2C478%2C0.32&scaling=contain&starting-point-node-id=1%3A2)
+<div id="instalacao"> </div>
 
-  - Neste arquivo, é possível navegar pelo protótipo. Isso pode ser feito clicando nas regiões interativas que destacam-se em azul claro ou utilizando as setas da navegação do Figma na parte inferior da tela.
-  - Experimente clicar em "Nova Ata" > Tipo de Reunião para ver o funcionamento dos campos dinâmicos.
+## 💻 Instalação
 
-É esperado que a aplicação final seja a implementação do design proposto. Isso inclui, cores, layout, modelo geral dos inputs, etc. Contudo, você tem liberdade de alterar/adicionar elementos, desde que as mudanças melhorem a usabilidade, sigam a identidade visual do design e não comprometam as funcionalidades necessárias. Pense nisso quando se deparar com situações não contempladas pelo mockup :wink:
+Clone o repositório
+```sh
+git clone https://github.com/IgorDummer/desafio-frontend.git
+```
 
-<!-- :information_source: *Tire um momento para navegar pelas telas antes de seguir para as instruções* -->
+### 📱 Inicializando Front-end
+```bash
+  # Instale as dependencias:
+  $ yarn
+  # Para rodar a aplicação em modo de desenvolvimento:
+  $ yarn dev
+```
 
-## Instruções
+<div id="exemplos-de-uso"> </div>
 
-### O que se espera da aplicação Web
 
-- Ter a tela da listagem de atas (página 1 "Listagem de Atas" do mockup) respeitando design, requisitos funcionais e regras de negócio.
+<div id="estrutura-de-arquivos"> </div>
 
-- Ter a tela do formulário de uma ata (página 2 "Formulário da Ata" do mockup) respeitando design, requisitos funcionais e regras de negócio.
+## 📁 Estrutura de arquivos
 
-### Requisitos Funcionais (RF) e Regras de Negócio (RN)
+Aqui, temos uma breve explicação da estrutura de arquivos
 
-Abaixo está por escrito o funcionamento mais detalhado do módulo, corroborando o que foi apresentado no protótipo. As RNs iniciadas com [:star2: Bônus] são opcionais, mas implementá-las será um diferencial :sunglasses:
+```
+Raiz do projeto
+│   README.md
+│   Arquivos de configuração, como tsconfig.json e package.json
+│   
+└───public
+│        Aqui estão os assets utilizados, como icone da IndustriAll 
+│
+└───src
+    │   
+    └───interfaces - Interfaces do domínio da nossa aplicação
+        └───components - Componentes usados nas telas
+        └───routes - Páginas da aplicação, onde define as rotas
+        └───services - Comunicação com a API
+        │
+        │ 
+        └─── App.tsx - Componente de entrada
+        
+```
 
-**Listagem de Atas**
+<div id="contribuindo"> </div>
 
-- **RF1**: As atas de reunião devem ser carregadas e listadas (página 1 do mockup)
+<!-- CONTRIBUTING -->
+## 🤝 Contribuindo
 
-  - RN1.1: As atas devem ser agrupadas pelos seus tipos de reunião.
-  - RN1.2: Se não houver nenhuma ata com um certo tipo, aquele tipo não precisa ser mostrado na listagem.
-  - [:star2: Bônus] RN1.3: Os tipos de reunião devem ser ordenados por ordem alfabética e as atas nele contidas devem ser ordenadas da mais recente à mais antiga.
-    Exemplo: uma ata de ontem e do tipo A aparecerá acima de uma ata de hoje, mas do tipo B, uma vez que primeiro ordenam-se os tipos e, dentro de cada tipo, suas atas.
+Se você tem alguma sugestão que fará este app ficar melhor, por favor realize um fork e crie um Pull Request. Você pode também simplesmente abrir uma issue com a tag "enhancement" para sugestões e "error" para problemas enfrentados
 
-- **RF2**: A ata deve ter seus dados individuais exibidos na listagem (página 1 do mockup)
+1. Faça um fork do Projeto
+2. Crie seu branch da Feature (`git checkout -b feature/AmazingFeature`)
+3. Faça commit das suas modificações (`git commit -m 'Add some AmazingFeature'`)
+4. Faça um push para o branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
 
-  - RN2.1: As informações individuais exibidas são: "Título", "Local", "Data e Horário de Início".
+<div id="contato"> </div>
 
-- **RF3**: A ata deve poder ser excluída
+<!-- CONTACT -->
+## ✉️ Contato
 
-**Formulário da Ata**
+E-mail: igordummer@outlook.com
+Linkedin: https://www.linkedin.com/in/igor-dummer/
 
-- **RF4**: A ata deve poder ser visualizada
+Link do projeto: https://github.com/IgorDummer/desafio-frontend
 
-  - RN4.1: O formulário para visualizar uma ata deve ser acessado a partir de um botão na listagem.
-  - RN4.2: Os seus campos não devem ser editáveis.
-  - RN4.3: Não deve haver botão de Salvar
 
-- **RF5**: Ao selecionar uma das opções do Tipo de Reunião, os campos definidos pelo tipo devem ser mostrados na ata (páginas 3, 4, 5 e 6 do mockup)
+<p align="right">(<a href="#top">Voltar ao topo</a>)</p>
 
-  - RN5.1: Um campo é definido por: "nome" e "tipo", onde o "tipo" do campo pode ser: "textarea" (texto de múltiplas linhas), "text" (texto de uma linha) ou "datetime" (valor de data e hora).
-
-  - RN5.2: Os campos no formulário devem ser gerados a partir dos dados recebidos pela API, na requisição do Tipo de Reunião. Ou seja, caso haja um Tipo de Reunião com uma combinação de campos diferente dos mostrados no protótipo, o seu sistema deve ser capaz de contemplá-lo sem precisar mexer no código.
-
-  - [:star2: Bônus] RN5.3: O componente do tipo textarea é um campo de texto rico (campo com opções de negrito, itálico, etc). Exemplo: a [página 7 do mockup](https://www.figma.com/file/kfO4pi7kyCRjuZQV3WMtcy/iMeets?node-id=81%3A371) mostra uma versão do formulário com um texto rico.
-
-- **RF6**: Uma ata deve poder ser criada (página 2 do mockup)
-
-  - RN6.1: O formulário para criar uma ata deve ser acessado a partir de um botão na listagem.
-  - RN6.2: A seção "Identificação" da ata possui os campos:
-
-    - Título \* (text)
-    - Local \* (dropdown/select)
-    - Data e Horário de Início \* (datetime)
-    - Data e Horário de Fim (datetime)
-    - Tipo de Reunião \* (dropdown/select)
-
-    Os campos marcados com \* são obrigatórios.
-
-  - RN6.2: As opções de Local devem ser buscadas ao carregar a página do formulário.
-  - RN6.3: As opções de Tipo de Reunião devem ser buscadas ao carregar a página do formulário.
-  - RN6.4: Não deve ser possível criar uma ata sem que os campos obrigatórios estejam preenchidos.
-  - RN6.5: Os campos dinâmicos da seção "Conteúdo da Reunião" são opcionais.
-  - [:star2: Bônus] RN6.6: Os campos dinâmicos da seção "Conteúdo da Reunião" são obrigatórios. OBS: Caso você queira aplicar essa RN, ela substituirá o comportamento dos campos dinâmicos descritos na RN6.5.
-  - RN6.7: Ao clicar em cancelar ou em salvar, o usuário deve ser redirecionado à página de listagem.
-
-### API
-
-Toda a documentação necessária para comunicação com a api está disponível no endereço:
-
-- https://desafio-iall.azurewebsites.net/api/swagger/index.html
-
-Para utilizar a API, é necessário fazer a autenticação através de Bearer Token. O token pode ser requisitado pelo link acima, na seção Account e endpoint de login (único endpoint acessível sem token).
-
-1. Clique em "Try it out"
-2. Altere os valores de `userName` e `password` para as credenciais recebidas no seu e-mail e clique em "Executar"
-3. Copie o token da resposta para utilizar na sua aplicação
-
-Caso deseje testar a API online, clique em "Authorize" no topo da tela, à direita e siga a instruções para inserir o token.
-
-## Como serei avaliado?
-
-Você será avaliado levando em conta os seguintes critérios:
-
-- Atendimento dos requisitos e regras de negócio
-- Incorporação do design proposto
-
-Será um diferencial:
-
-- Adesão às RNs bônus
-- Adição de elementos que melhorem a usabilidade, sigam a identidade visual do design e não comprometam as funcionalidades
-
-## Envio do Desafio
-
-Você poderá:
-
-- Efetuar um pull request da sua implementação diretamente no Github até a data limite de 21/09/2023, ou
-- Encaminhar para o e-mail henan.ferreira@industriall.ai com rh@industriall.ai em cópia, um arquivo .zip ou link com o código fonte até a data limite de 21/09/2023.
-
-Qualquer problema ou dificuldade, você pode entrar em contato conosco pelos e-mails, henan.ferreira@industriall.ai ou rh@industriall.ai para que possamos sanar todas as dúvidas!
