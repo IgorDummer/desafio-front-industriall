@@ -115,7 +115,7 @@ export default function MinuteViewer({ id }: MinuteViewerProps) {
 
   return (
     <div className={classes.container}>
-      {isLoading && <p>Carregando...</p>}
+      {isLoading && <p className={classes.text}>Carregando...</p>}
       {ata && (
         <div>
           <h1 className={classes.title}>Identificação</h1>
@@ -155,7 +155,9 @@ export default function MinuteViewer({ id }: MinuteViewerProps) {
           <div className={classes.marginTop}>
             <h1 className={classes.title}>Conteúdo da Reunião</h1>
             <div className={`${classes.textFieldContainer} ${classes.marginBottom}`}>
-              {renderMeetingFields()}
+              {ata.camposAtaReuniao.length === undefined ?
+                <p>paulo</p>
+                : renderMeetingFields()}
             </div>
           </div>
           <div className={classes.buttonContainer}>

@@ -71,9 +71,9 @@ export default function MeetingMinutesList() {
   return (
     <section className={classes.container}>
       {isLoading ? (
-        <p>Carregando...</p>
+        <p className={classes.text}>Carregando...</p>
       ) : objectKeys.length === 0 ? (
-        <p>Nenhuma ata cadastrada.</p>
+        <p className={classes.text}>Nenhuma ata cadastrada.</p>
       ) : (
         Object.entries(groupedAtas).map(([tipoReuniao, atas], index) => (
           <div key={tipoReuniao} className={index !== objectKeys.length - 1 ? classes.minuteCard : ''}>

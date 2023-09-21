@@ -107,7 +107,7 @@ export default function NewMinutesForm() {
 
   function renderMeetingFields() {
     if (isLoading) {
-      return <p>Carregando campos...</p>;
+      return <p className={classes.text}>Carregando...</p>;
     }
 
     if (!selectedMeetingType || !selectedMeetingType.campos) {
@@ -319,7 +319,12 @@ export default function NewMinutesForm() {
         <div className={classes.marginTop}>
           <h1 className={classes.title}>Conteúdo da Reunião</h1>
           <div className={`${classes.textFieldContainer} ${classes.marginBottom}`}>
-            {renderMeetingFields()}
+            {selectedType === undefined ? (
+              <div className={classes.emptyType}>
+                <p >Selecione o tipo de reunião</p>
+              </div>
+            )
+              : renderMeetingFields()}
           </div>
         </div>
       </div>
