@@ -24,6 +24,11 @@ export default function NewMinutesForm() {
   const [endDate, setEndDate] = useState<Dayjs | null>(null);
   const [selectedType, setSelectedType] = useState<number | undefined>(undefined);
 
+  /* Campos dinâmicos */
+  const [textAreaValues, setTextAreaValues] = useState<Record<number, string>>({});
+  const [dateTimeValues, setDateTimeValues] = useState<Record<number, Dayjs | null>>({});
+  const [textValues, setTextValues] = useState<Record<number, string>>({});
+
   const navigate = useNavigate();
 
   async function getLocations() {
@@ -67,6 +72,28 @@ export default function NewMinutesForm() {
     }
   }, [selectedType]);
 
+  /* Campos dinâmicos */
+  function handleTextAreaChange(campoId: number, value: string) {
+    setTextAreaValues((prevValues) => ({
+      ...prevValues,
+      [campoId]: value,
+    }));
+  }
+
+  function handleDateTimeChange(campoId: number, value: Dayjs | null) {
+    setDateTimeValues((prevValues) => ({
+      ...prevValues,
+      [campoId]: value,
+    }));
+  }
+
+  function handleTextChange(campoId: number, value: string) {
+    setTextValues((prevValues) => ({
+      ...prevValues,
+      [campoId]: value,
+    }));
+  }
+
   function renderMeetingFields() {
     if (isLoading) {
       return <p>Carregando campos...</p>;
@@ -90,7 +117,7 @@ export default function NewMinutesForm() {
                   minHeight: '163px',
                 },
               }}
-
+              onChange={(e) => handleTextAreaChange(campo.id, e.target.value)}
             />
           </div>
         );
@@ -101,6 +128,8 @@ export default function NewMinutesForm() {
               <BasicDatePicker
                 key={campo.id}
                 label={campo.nome}
+                value={dateTimeValues[campo.id] || null}
+                onChange={(value) => handleDateTimeChange(campo.id, value)}
               />
             </div>
           </div>
@@ -110,6 +139,12 @@ export default function NewMinutesForm() {
           <CustomTextField
             key={campo.id}
             label={campo.nome}
+            value={textValues[campo.id] || ''}
+            onChange={(value) => {
+              if (value !== undefined) {
+                handleTextChange(campo.id, value);
+              }
+            }}
           />
         );
       } else {
@@ -118,12 +153,30 @@ export default function NewMinutesForm() {
     });
   }
 
+  function clearDynamicFields() {
+    setTextAreaValues({});
+    setDateTimeValues({});
+    setTextValues({});
+  }
+
   function handleButtonClick() {
     console.log('Titulo:' + title);
     console.log('Local selecionado:' + selectedLocation);
     console.log('Data de Inicio:' + (startDate ? dayjs(startDate).format('DD/MM/YYYY HH:mm') : 'N/A'));
     console.log('Data de Fim:' + (endDate ? dayjs(endDate).format('DD/MM/YYYY HH:mm') : 'N/A'));
     console.log('Tipo selecionado:' + selectedType);
+
+    Object.entries(textAreaValues).forEach(([campoId, value]) => {
+      console.log(`Campo de Texto (ID ${campoId}): ${value}`);
+    });
+
+    Object.entries(dateTimeValues).forEach(([campoId, value]) => {
+      console.log(`Campo de Data/Hora (ID ${campoId}): ${value ? value.format('DD/MM/YYYY HH:mm') : 'N/A'}`);
+    });
+
+    Object.entries(textValues).forEach(([campoId, value]) => {
+      console.log(`Campo de Texto Simples (ID ${campoId}): ${value}`);
+    });
   }
 
   function cancelButtonClick() {
@@ -167,6 +220,7 @@ export default function NewMinutesForm() {
             options={meetingTypeData}
             value={selectedType}
             onChange={(newValue) => {
+              clearDynamicFields();
               setSelectedType(newValue);
               getMeetingTypeById()
             }}
