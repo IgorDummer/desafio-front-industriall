@@ -31,14 +31,13 @@ interface SelectProps<T extends { id: number; nome: string }> {
   required?: boolean;
   options?: T[];
   value: number | undefined;
-  onChange?: (value: number | undefined) => void;
+  onChange: (value: number | undefined) => void;
 }
 
 export default function CustomizedSelect<T extends { id: number; nome: string }>
   ({ label,
     required,
     options,
-    value,
     onChange, }: SelectProps<T>) {
 
   return (
@@ -53,11 +52,11 @@ export default function CustomizedSelect<T extends { id: number; nome: string }>
         IconComponent: KeyboardArrowDownOutlinedIcon,
       }}
     >
-      {options.map((option) => (
+      {options !== undefined ? (options.map((option) => (
         <MenuItem key={option.id} value={option.id} onClick={() => onChange(option.id)}>
           {option.nome}
         </MenuItem>
-      ))}
+      ))) : ''}
     </CssTextField>
   );
 }

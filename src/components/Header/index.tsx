@@ -9,7 +9,7 @@ interface HeaderProps {
   hasButton?: boolean;
 }
 
-export default function Header({ title, subtitle, hasButton, onClick }: HeaderProps) {
+export default function Header({ title, subtitle, hasButton }: HeaderProps) {
   const [buttonNewMinutes] = useState(hasButton ? true : false);
 
   const navigate = useNavigate();
