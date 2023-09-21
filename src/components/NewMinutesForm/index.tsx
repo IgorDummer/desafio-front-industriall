@@ -12,6 +12,7 @@ import { Dayjs } from 'dayjs';
 
 import api from '../../services/api';
 import classes from './newMinutesForm.module.css';
+import TextArea from '../common/TextArea';
 
 export default function NewMinutesForm() {
   const [locationsData, setLocationsData] = useState<Locations_I[]>([]);
@@ -119,17 +120,12 @@ export default function NewMinutesForm() {
         return (
           <div>
             <p key={campo.id} className={classes.textAreaTitle}>{campo.nome}</p>
-            <TextField
-              placeholder=""
-              multiline
-              fullWidth
-              inputProps={{
-                style: {
-                  minHeight: '163px',
-                },
-              }}
-              onChange={(e) => handleTextAreaChange(campo.id, e.target.value)}
-            />
+            <div style={{ height: '190px', marginBottom: '30px' }}>
+              <TextArea
+                value={textAreaValues[campo.id]}
+                onChange={(value) => handleTextAreaChange(campo.id, value)}
+              />
+            </div>
           </div>
         );
       } else if (campo.tipo === 'datetime') {

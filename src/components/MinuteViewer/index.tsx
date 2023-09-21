@@ -10,6 +10,7 @@ import api from '../../services/api';
 import classes from './minuteViewer.module.css';
 import { MeetingMinutes_I } from '../../interfaces/atas';
 import dayjs from 'dayjs';
+import TextArea from '../common/TextArea';
 
 interface MinuteViewerProps {
   id: string,
@@ -60,12 +61,13 @@ export default function MinuteViewer({ id }: MinuteViewerProps) {
           <div>
             {
               campo.valor !== '' && (
-                <div>
+                <div style={{ height: '190px', marginBottom: '30px' }}>
                   <p key={campo.id} className={classes.textAreaTitle} > {campo.nome}</p>
-                  <CustomTextField
+                  <TextArea
                     key={campo.id}
-                    label={''}
                     value={campo.valor}
+                    onChange={() => { }}
+                    readOnly
                   />
                 </div>
               )

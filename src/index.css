@@ -43,3 +43,8 @@ a {
     max-width: 90%; /* Reduza o max-width para 90% da largura da tela */
   }
 }
+
+.ql-container {
+  font-size: 16px !important;
+  font-family: 'Calibri', sans-serif;
+}
